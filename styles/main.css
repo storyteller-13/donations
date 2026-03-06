@@ -1,0 +1,320 @@
+:root {
+  --bg: #0a0612;
+  --surface: #120b1a;
+  --surface-hover: #1a1025;
+  --text: #e8e0f0;
+  --text-muted: #a78bb8;
+  --neon: #c084ff;
+  --neon-bright: #e879f9;
+  --neon-glow: rgba(192, 132, 255, 0.5);
+  --neon-glow-strong: rgba(192, 132, 255, 0.7);
+  --neon-border: rgba(192, 132, 255, 0.4);
+  --stripe: #635bff;
+  --paypal: #0070ba;
+  --crypto: #22c55e;
+  --radius: 12px;
+  --font: "Orbitron", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-transform: lowercase;
+}
+
+/* subtle purple ambient glow behind content */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(192, 132, 255, 0.12) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem) 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+.header h1 {
+  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-shadow:
+    0 0 20px var(--neon-glow),
+    0 0 40px var(--neon-glow);
+}
+
+.tagline {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+/* Cards side by side — one page */
+.options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  flex: 1;
+  align-content: center;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 900px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--neon-border);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.25rem;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow:
+    0 0 20px rgba(192, 132, 255, 0.08),
+    inset 0 0 30px rgba(192, 132, 255, 0.03);
+}
+
+.card:hover {
+  background: var(--surface-hover);
+  border-color: var(--neon);
+  box-shadow:
+    0 0 25px var(--neon-glow),
+    0 0 50px rgba(192, 132, 255, 0.15),
+    inset 0 0 40px rgba(192, 132, 255, 0.05);
+}
+
+.card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--neon-border);
+  box-shadow: 0 0 15px var(--neon-glow);
+}
+
+.card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.card-stripe .card-icon {
+  color: var(--stripe);
+  border-color: rgba(99, 91, 255, 0.5);
+  box-shadow: 0 0 15px rgba(99, 91, 255, 0.3);
+}
+
+.card-paypal .card-icon {
+  color: var(--paypal);
+  border-color: rgba(0, 112, 186, 0.5);
+  box-shadow: 0 0 15px rgba(0, 112, 186, 0.3);
+}
+
+.card-crypto .card-icon {
+  color: var(--crypto);
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+}
+
+.card h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+  letter-spacing: 0.04em;
+  color: var(--neon-bright);
+  text-shadow: 0 0 15px var(--neon-glow);
+}
+
+.card p {
+  margin: 0 0 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid var(--neon-border);
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  background: rgba(192, 132, 255, 0.1);
+  box-shadow: 0 0 15px var(--neon-glow);
+}
+
+.btn:hover {
+  border-color: var(--neon);
+  box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 40px var(--neon-glow);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-stripe {
+  background: rgba(99, 91, 255, 0.2);
+  border-color: rgba(99, 91, 255, 0.5);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(99, 91, 255, 0.3);
+}
+
+.btn-stripe:hover {
+  box-shadow: 0 0 25px rgba(99, 91, 255, 0.5);
+}
+
+/* PayPal container */
+#paypal-button-container {
+  min-height: 42px;
+}
+
+#paypal-button-container > div {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.paypal-placeholder {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.paypal-placeholder code {
+  font-size: 0.9em;
+  padding: 0.15em 0.35em;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  border: 1px solid var(--neon-border);
+}
+
+/* Crypto */
+.crypto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.crypto-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.crypto-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.crypto-address-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.crypto-address {
+  font-size: 0.65rem;
+  padding: 0.4rem 0.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--neon-border);
+  border-radius: 6px;
+  color: var(--text);
+  word-break: break-all;
+  flex: 1;
+  min-width: 0;
+  box-shadow: 0 0 10px rgba(192, 132, 255, 0.08);
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  padding: 0.4rem 0.65rem;
+  font-family: var(--font);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--neon);
+  background: rgba(192, 132, 255, 0.1);
+  border: 1px solid var(--neon-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.copy-btn:hover {
+  background: rgba(192, 132, 255, 0.2);
+  color: var(--neon-bright);
+  box-shadow: 0 0 15px var(--neon-glow);
+}
+
+.copy-btn.copied {
+  color: var(--crypto);
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--neon-border);
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 10px var(--neon-glow);
+}

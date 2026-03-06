@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>support us — donate</title>
+  <title></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,8 +13,8 @@
 <body>
   <div class="page">
     <header class="header">
-      <h1>support our work</h1>
-      <p class="tagline">your donation helps us keep building. choose how you’d like to give below.</p>
+      <h1 data-text="header.title"></h1>
+      <p class="tagline" data-text="header.tagline"></p>
     </header>
 
     <main class="options">
@@ -22,17 +22,17 @@
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4V4zm0 6h16v10H4V10z"/></svg>
         </div>
-        <h2>card (stripe)</h2>
-        <p>donate securely with any major credit or debit card.</p>
-        <a href="https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK" class="btn btn-stripe" target="_blank" rel="noopener">donate with stripe</a>
+        <h2 data-text="stripe.title"></h2>
+        <p data-text="stripe.description"></p>
+        <a href="https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK" class="btn btn-stripe" target="_blank" rel="noopener" data-text="stripe.button"></a>
       </section>
 
       <section class="card card-paypal">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.32 21.97a.546.546 0 0 1-.4-.16.567.567 0 0 1-.15-.4L7.2 14h2.16l.57 7.41a.546.546 0 0 1-.15.4.567.567 0 0 1-.4.16Zm5.24 0a.567.567 0 0 1-.4-.15.546.546 0 0 1-.15-.4L12.44 14h2.16l.57 7.41a.546.546 0 0 1-.15.4.567.567 0 0 1-.4.16Zm5.57-14.41h-4.97c-.24 0-.47.09-.64.25a.9.9 0 0 0-.25.64l-.72 4.65-.45 2.89-.02.14v.08l-.57 3.69a.567.567 0 0 0 .15.4.546.546 0 0 0 .4.15h1.41a.48.48 0 0 0 .47-.39l.04-.22.87-5.64.06-.38h.06c.58 2.72 2.5 4.24 5.15 4.24 1.63 0 2.91-.39 2.91-1.42 0-.68-.55-1.16-1.47-1.59 1.45-.35 2.38-1.12 2.38-2.27 0-.95-.73-1.63-2.08-2.19 1.6-.45 2.66-1.22 2.66-2.54.01-1.87-1.73-2.95-4.58-2.95Zm-2.36 4.41c-.93 0-1.68-.23-1.87-.69l.69-4.46c.05-.31.31-.53.62-.53h.31c.58 0 1.11.12 1.53.35.65.36 1.09.9 1.09 1.55 0 1.07-1.2 1.65-2.37 1.65Z"/></svg>
         </div>
-        <h2>paypal</h2>
-        <p>use your paypal account or link a card in seconds.</p>
+        <h2 data-text="paypal.title"></h2>
+        <p data-text="paypal.description"></p>
         <div id="paypal-button-container"></div>
       </section>
 
@@ -40,21 +40,21 @@
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/><path d="M12 8v4l2 2"/></svg>
         </div>
-        <h2>cryptocurrency</h2>
-        <p>send bitcoin, ethereum, or usdc to the addresses below.</p>
+        <h2 data-text="crypto.title"></h2>
+        <p data-text="crypto.description"></p>
         <div class="crypto-list">
           <div class="crypto-item">
-            <span class="crypto-label">bitcoin (btc)</span>
+            <span class="crypto-label" data-text="crypto.btcLabel"></span>
             <div class="crypto-address-wrap">
               <code class="crypto-address" id="btc-address">bc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>
-              <button type="button" class="copy-btn" data-copy="btc-address" aria-label="Copy Bitcoin address">copy</button>
+              <button type="button" class="copy-btn" data-copy="btc-address" data-aria-label="crypto.copyBtcAria" data-text="crypto.copy"></button>
             </div>
           </div>
           <div class="crypto-item">
-            <span class="crypto-label">ethereum / usdc (eth)</span>
+            <span class="crypto-label" data-text="crypto.ethLabel"></span>
             <div class="crypto-address-wrap">
               <code class="crypto-address" id="eth-address">0x1234567890abcdef1234567890abcdef12345678</code>
-              <button type="button" class="copy-btn" data-copy="eth-address" aria-label="Copy Ethereum address">copy</button>
+              <button type="button" class="copy-btn" data-copy="eth-address" data-aria-label="crypto.copyEthAria" data-text="crypto.copy"></button>
             </div>
           </div>
         </div>
@@ -62,11 +62,12 @@
     </main>
 
     <footer class="footer">
-      <p>thank you for your generosity. all donations go directly to our mission.</p>
+      <p data-text="footer.message"></p>
     </footer>
   </div>
 
   <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD&intent=capture"></script>
+  <script src="config/text.js"></script>
   <script src="scripts/main.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ window.APP_TEXT = {
 
   header: {
     title: 'support my work <3',
-    tagline: "your donation helps me keep building open and free code and art",
+    tagline: "your donation helps me keep building open, free code and art",
   },
 
   fiat: {
@@ -22,7 +22,7 @@ window.APP_TEXT = {
 
   crypto: {
     title: 'donate with crypto',
-    description: 'send to my address in your favorite crypto chain.',
+    description: 'send to my address on your favorite crypto chain.',
     copy: 'copy',
     copied: 'copied!',
     failed: 'failed',

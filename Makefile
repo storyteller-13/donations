@@ -1,6 +1,6 @@
 PORT ?= 8033
 
-.PHONY: server lint test check coverage install-hooks
+.PHONY: server lint test check coverage clean install-hooks
 server:
 	python3 -m http.server $(PORT)
 
@@ -14,6 +14,9 @@ check: lint test
 
 coverage:
 	npm run coverage
+
+clean:
+	rm -rf coverage .nyc_output
 
 install-hooks:
 	@cp scripts/pre-commit.sh .git/hooks/pre-commit

@@ -19,7 +19,6 @@
   window.DONATION_PAY_METHODS = window.DONATION_PAY_METHODS || [];
 
   function get(obj, path) {
-    if (obj == null) return undefined;
     var keys = path.split('.');
     for (var i = 0; i < keys.length; i++) {
       if (obj == null) return undefined;

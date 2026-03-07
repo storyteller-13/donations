@@ -25,6 +25,11 @@ a static, single-page donation site with **stripe** (card/fiat) and **cryptocurr
 
 - all user-facing strings live in `config/text.js`: page title, header, tagline, section titles, button labels, and copy-button text.
 
+## security
+
+- `index.html` and `404.html` include a strict Content Security Policy and referrer policy to reduce script-injection and data-leakage risks.
+- `.well-known/security.txt` provides a standardized disclosure contact for responsible vulnerability reporting.
+
 ## development
 
 **local server:** `make server` (default port 8033) or `python3 -m http.server 8033`.

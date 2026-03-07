@@ -4,11 +4,10 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 5,
       sourceType: 'script',
-      globals: {
+        globals: {
         window: 'readonly',
         document: 'readonly',
         navigator: 'readonly',
-        alert: 'readonly',
         setTimeout: 'readonly',
         console: 'readonly',
       },

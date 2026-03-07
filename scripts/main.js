@@ -15,8 +15,6 @@
     });
   }
 
-  applyTextConfig();
-
   var container = document.getElementById('pay-methods');
   if (container) {
     for (var i = 0; i < payMethods.length; i++) {

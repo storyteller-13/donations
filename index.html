@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1 data-text="header.title"></h1>
+      <p class="tagline" data-text="header.tagline"></p>
+    </header>
+
+    <main class="options" id="pay-methods" aria-label="Payment options">
+      <!-- Pay method sections (fiat, crypto, etc.) are injected by scripts -->
+    </main>
+  </div>
+
+  <script src="config/config.js"></script>
+  <script src="config/text.js"></script>
+  <script src="scripts/donation-api.js"></script>
+  <script src="scripts/pay-methods/fiat.js"></script>
+  <script src="scripts/pay-methods/crypto.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

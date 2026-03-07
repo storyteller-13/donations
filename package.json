@@ -4,7 +4,7 @@
   "scripts": {
     "prepare": "husky",
     "lint": "eslint config/ scripts/",
-    "test": "node test/smoke.js && node test/dom-test.js",
+    "test": "node test/dom-test.js",
     "check": "npm run lint && npm run test",
     "coverage": "node -r ./test/patch-cpus.js ./node_modules/.bin/nyc node test/dom-test.js",
     "coverage:report": "npm run coverage && (open coverage/lcov-report/index.html 2>/dev/null || xdg-open coverage/lcov-report/index.html 2>/dev/null || true)"

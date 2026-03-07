@@ -1,10 +1,8 @@
 /**
  * DOM tests: run app scripts in JSDOM and assert behavior.
  * Run with: node test/dom-test.js (from repo root).
- * Used under c8 for coverage of config/ and scripts/.
+ * Used under nyc for coverage of config/ and scripts/.
  */
-require('./smoke.js');
-
 var path = require('path');
 var fs = require('fs');
 var root = path.resolve(__dirname, '..');

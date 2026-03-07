@@ -3,41 +3,29 @@
  * Edit this file to change copy without touching HTML or script.
  */
 window.APP_TEXT = {
-  pageTitle: 'support us — donate',
+  pageTitle: 'support my work <3',
 
   header: {
-    title: 'support our work',
-    tagline: "your donation helps us keep building. choose how you'd like to give below.",
+    title: 'support my work <3',
+    tagline: "your donation helps me keep building open and free code and art",
   },
 
-  stripe: {
-    title: 'card (stripe)',
-    description: 'donate securely with any major credit or debit card.',
-    button: 'donate with stripe',
-  },
-
-  paypal: {
-    title: 'paypal',
-    description: 'use your paypal account or link a card in seconds.',
-    buttonLabel: 'donate',
-    orderDescription: 'Donation',
-    thankYou: 'thank you for your donation, {name}!',
-    placeholderHtml: 'add your paypal client id in <code>index.html</code> to enable the button.',
+  fiat: {
+    title: 'donate with fiat',
+    description: 'donate with card or other fiat options.',
+    stripe: {
+      title: 'card (stripe)',
+      description: 'donate securely with any major credit or debit card.',
+      button: 'donate with stripe',
+    },
   },
 
   crypto: {
-    title: 'cryptocurrency',
-    description: 'send bitcoin, ethereum, or usdc to the addresses below.',
-    btcLabel: 'bitcoin (btc)',
-    ethLabel: 'ethereum / usdc (eth)',
+    title: 'donate with crypto',
+    description: 'send to my address in your favorite crypto chain.',
     copy: 'copy',
     copied: 'Copied!',
     failed: 'Failed',
-    copyBtcAria: 'Copy Bitcoin address',
-    copyEthAria: 'Copy Ethereum address',
-  },
-
-  footer: {
-    message: 'thank you for your generosity. all donations go directly to our mission.',
+    copyAria: 'Copy address',
   },
 };

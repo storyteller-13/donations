@@ -2,6 +2,8 @@
   'use strict';
 
   var text = typeof window.APP_TEXT !== 'undefined' ? window.APP_TEXT : {};
+  var config = typeof window.APP_CONFIG !== 'undefined' ? window.APP_CONFIG : {};
+  var payMethods = window.DONATION_PAY_METHODS || [];
 
   function get(obj, path) {
     var keys = path.split('.');
@@ -13,7 +15,7 @@
   }
 
   function applyTextConfig() {
-    document.title = text.pageTitle || document.title;
+    document.title = get(text, 'pageTitle') || document.title;
 
     document.querySelectorAll('[data-text]').forEach(function (el) {
       var value = get(text, el.getAttribute('data-text'));
@@ -28,7 +30,17 @@
 
   applyTextConfig();
 
-  // Copy crypto address to clipboard
+  var container = document.getElementById('pay-methods');
+  if (container) {
+    for (var i = 0; i < payMethods.length; i++) {
+      if (payMethods[i] && typeof payMethods[i].render === 'function') {
+        payMethods[i].render(container, config, text);
+      }
+    }
+  }
+
+  applyTextConfig();
+
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var id = this.getAttribute('data-copy');
@@ -56,54 +68,4 @@
       );
     });
   });
-
-  // PayPal donate button (only if SDK loaded and client ID is set)
-  var paypalScript = document.querySelector('script[src*="paypal.com/sdk/js"]');
-  var paypalSrc = paypalScript ? paypalScript.getAttribute('src') : '';
-  var hasValidClientId =
-    paypalSrc && paypalSrc.includes('client-id=') && !paypalSrc.includes('YOUR_PAYPAL_CLIENT_ID');
-
-  if (hasValidClientId && typeof paypal !== 'undefined') {
-    var buttonLabel = get(text, 'paypal.buttonLabel') || 'donate';
-    var orderDescription = get(text, 'paypal.orderDescription') || 'Donation';
-    var thankYouTemplate = get(text, 'paypal.thankYou') || 'thank you for your donation, {name}!';
-    paypal
-      .Buttons({
-        style: {
-          shape: 'rect',
-          color: 'blue',
-          layout: 'vertical',
-          label: buttonLabel,
-        },
-        createOrder: function (data, actions) {
-          return actions.order.create({
-            intent: 'CAPTURE',
-            purchase_units: [
-              {
-                amount: {
-                  currency_code: 'USD',
-                  value: '10.00',
-                },
-                description: orderDescription,
-              },
-            ],
-          });
-        },
-        onApprove: function (data, actions) {
-          return actions.order.capture().then(function (details) {
-            var name = details.payer && details.payer.name && details.payer.name.given_name ? details.payer.name.given_name : '';
-            var message = thankYouTemplate.replace('{name}', name);
-            alert(message);
-          });
-        },
-        onError: function (err) {
-          console.error('PayPal error:', err);
-        },
-      })
-      .render('#paypal-button-container');
-  } else {
-    var placeholderHtml = get(text, 'paypal.placeholderHtml') || 'add your paypal client id in <code>index.html</code> to enable the button.';
-    document.getElementById('paypal-button-container').innerHTML =
-      '<p class="paypal-placeholder">' + placeholderHtml + '</p>';
-  }
 })();

@@ -1,0 +1,32 @@
+{
+  "name": "donation",
+  "private": true,
+  "scripts": {
+    "lint": "eslint config/ scripts/",
+    "test": "node test/smoke.js && node test/dom-test.js",
+    "check": "npm run lint && npm run test",
+    "coverage": "node -r ./test/patch-cpus.js ./node_modules/.bin/nyc node test/dom-test.js",
+    "coverage:report": "npm run coverage && (open coverage/lcov-report/index.html 2>/dev/null || xdg-open coverage/lcov-report/index.html 2>/dev/null || true)"
+  },
+  "devDependencies": {
+    "eslint": "^9.15.0",
+    "jsdom": "^25.0.0",
+    "nyc": "^17.1.0"
+  },
+  "nyc": {
+    "include": [
+      "config/**/*.js",
+      "scripts/**/*.js"
+    ],
+    "exclude": [
+      "test/**"
+    ],
+    "reporter": [
+      "text",
+      "text-summary",
+      "lcov",
+      "html"
+    ],
+    "all": true
+  }
+}

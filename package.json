@@ -2,6 +2,7 @@
   "name": "donation",
   "private": true,
   "scripts": {
+    "prepare": "husky",
     "lint": "eslint config/ scripts/",
     "test": "node test/smoke.js && node test/dom-test.js",
     "check": "npm run lint && npm run test",
@@ -10,6 +11,7 @@
   },
   "devDependencies": {
     "eslint": "^9.15.0",
+    "husky": "^9.0.11",
     "jsdom": "^25.0.0",
     "nyc": "^17.1.0"
   },

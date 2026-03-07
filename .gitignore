@@ -27,6 +27,7 @@ coverage/
 # Optional
 dist/
 .cache/
+.husky/
 
 coverage
 .nyc_output/

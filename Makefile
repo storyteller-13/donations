@@ -19,6 +19,5 @@ clean:
 	rm -rf coverage .nyc_output
 
 install-hooks:
-	@cp scripts/pre-commit.sh .git/hooks/pre-commit
-	@chmod +x .git/hooks/pre-commit
-	@echo "Pre-commit hook installed. It runs: npm run check"
+	@npm run prepare
+	@echo "Husky hooks installed (.husky/pre-commit runs: npm run check)"

@@ -374,3 +374,24 @@ body::before {
   box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
 }
 
+/* Footnote — very small support links */
+.footnote {
+  margin-top: auto;
+  padding-top: clamp(1rem, 2vw, 1.5rem);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-align: center;
+  opacity: 0.85;
+}
+
+.footnote a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footnote a:hover {
+  color: var(--neon);
+}
+

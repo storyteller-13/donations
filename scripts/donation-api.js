@@ -39,7 +39,7 @@
    */
   function registerMethod(spec) {
     if (spec && typeof spec.render === 'function') {
-      window.DONATION_PAY_METHODS.push({ id: spec.id, render: spec.render });
+      window.DONATION_PAY_METHODS.push({ render: spec.render });
     }
   }
 

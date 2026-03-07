@@ -23,11 +23,9 @@ npm-debug.log*
 
 # Coverage
 coverage/
+.nyc_output/
 
 # Optional
 dist/
 .cache/
 .husky/
-
-coverage
-.nyc_output/

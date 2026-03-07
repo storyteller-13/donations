@@ -10,7 +10,8 @@ lint:
 test:
 	npm run test
 
-check: lint test
+check:
+	npm run check
 
 coverage:
 	npm run coverage

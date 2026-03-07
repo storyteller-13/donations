@@ -40,9 +40,7 @@
     var stripeBlock = document.createElement('div');
     stripeBlock.className = 'fiat-option fiat-option-stripe';
     stripeBlock.innerHTML =
-      '<div class="fiat-option-header">' +
       '<span class="fiat-option-title" data-text="fiat.stripe.title">' + escapeHtml(stripeTitle) + '</span>' +
-      '</div>' +
       '<p class="fiat-option-desc" data-text="fiat.stripe.description">' + escapeHtml(stripeDesc) + '</p>' +
       '<div class="fiat-actions" id="fiat-stripe-actions"></div>';
 
@@ -53,7 +51,7 @@
       btn.href = stripeLink;
       btn.target = '_blank';
       btn.rel = 'noopener noreferrer';
-      btn.className = 'btn btn-primary';
+      btn.className = 'btn';
       btn.textContent = btnLabel;
       btn.setAttribute('data-text', 'fiat.stripe.button');
       stripeActions.appendChild(btn);

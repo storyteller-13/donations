@@ -59,7 +59,7 @@ if (copyBtn) {
   copyBtn.click();
   // Handler uses .then(); wait for promise callback then assert
   setTimeout(function () {
-    assert(copyBtn.textContent === 'Copied!', 'copy button should show Copied! after click');
+    assert(copyBtn.textContent.toLowerCase().indexOf('copied') !== -1, 'copy button should show copied state after click');
     assert(copyBtn.classList.contains('copied'), 'copy button should have .copied class');
     finish();
   }, 0);

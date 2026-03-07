@@ -20,24 +20,25 @@
   var container = document.getElementById('pay-methods');
   if (container) {
     for (var i = 0; i < payMethods.length; i++) {
-      if (payMethods[i] && typeof payMethods[i].render === 'function') {
-        payMethods[i].render(container, config, text);
+      var method = payMethods[i];
+      if (method && typeof method.render === 'function') {
+        method.render(container, config, text);
       }
     }
   }
 
   applyTextConfig();
 
+  var copyLabel = (get && get(text, 'crypto.copy')) || 'Copy';
+  var copiedLabel = (get && get(text, 'crypto.copied')) || 'Copied!';
+  var failedLabel = (get && get(text, 'crypto.failed')) || 'Failed';
+
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var id = this.getAttribute('data-copy');
       var el = document.getElementById(id);
       if (!el) return;
-      var textToCopy = el.textContent.trim();
-      var copyLabel = (get && get(text, 'crypto.copy')) || 'Copy';
-      var copiedLabel = (get && get(text, 'crypto.copied')) || 'Copied!';
-      var failedLabel = (get && get(text, 'crypto.failed')) || 'Failed';
-      navigator.clipboard.writeText(textToCopy).then(
+      navigator.clipboard.writeText(el.textContent.trim()).then(
         function () {
           btn.textContent = copiedLabel;
           btn.classList.add('copied');

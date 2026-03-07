@@ -1,24 +1,17 @@
+/**
+ * Crypto payment method: list of chain addresses with copy buttons.
+ * Config: APP_CONFIG.crypto.addresses. Text: APP_TEXT.crypto.*
+ */
 (function () {
   'use strict';
 
-  window.DONATION_PAY_METHODS = window.DONATION_PAY_METHODS || [];
-
-  function get(obj, path) {
-    var keys = path.split('.');
-    for (var i = 0; i < keys.length; i++) {
-      if (obj == null) return undefined;
-      obj = obj[keys[i]];
-    }
-    return obj;
-  }
-
-  function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
+  var Donation = window.Donation;
+  if (!Donation) return;
 
   function render(container, config, text) {
+    var get = Donation.get;
+    var escapeHtml = Donation.escapeHtml;
+
     var section = document.createElement('section');
     section.className = 'card card-crypto';
     section.setAttribute('aria-labelledby', 'crypto-title');
@@ -59,5 +52,5 @@
     container.appendChild(section);
   }
 
-  window.DONATION_PAY_METHODS.push({ render: render });
+  Donation.registerMethod({ id: 'crypto', render: render });
 })();

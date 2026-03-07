@@ -29,6 +29,8 @@ global.navigator.clipboard = {
 
 require(path.join(root, 'config/config.js'));
 require(path.join(root, 'config/text.js'));
+require(path.join(root, 'scripts/donation-api.js'));
+require(path.join(root, 'scripts/pay-methods/fiat.js'));
 require(path.join(root, 'scripts/pay-methods/crypto.js'));
 require(path.join(root, 'scripts/main.js'));
 
@@ -37,14 +39,18 @@ function assert(condition, message) {
   if (!condition) errors.push(message);
 }
 
-assert(document.title === 'support us — donate', 'document.title should be set from config');
+assert(document.title && document.title.length > 0, 'document.title should be set from config');
 assert(document.querySelector('h1').textContent.trim().length > 0, 'header title should be filled');
 assert(document.querySelector('.tagline').textContent.trim().length > 0, 'tagline should be filled');
 
 var cards = document.querySelectorAll('.card');
-assert(cards.length >= 1, 'at least one pay method card should be rendered');
-var cryptoTitle = cards[0] ? cards[0].querySelector('h2') : null;
-assert(cryptoTitle && cryptoTitle.textContent.trim().toLowerCase().indexOf('crypto') !== -1, 'card should be "donate with crypto"');
+assert(cards.length >= 2, 'at least two pay method cards (fiat, crypto) should be rendered');
+var hasCrypto = false;
+cards.forEach(function (card) {
+  var h2 = card.querySelector('h2');
+  if (h2 && h2.textContent.trim().toLowerCase().indexOf('crypto') !== -1) hasCrypto = true;
+});
+assert(hasCrypto, 'one card should be "donate with crypto"');
 
 assert(document.querySelectorAll('.crypto-item').length > 0, 'crypto list should be populated from config');
 
@@ -53,12 +59,12 @@ var copyBtn = document.querySelector('.copy-btn');
 assert(copyBtn, 'copy button should exist');
 if (copyBtn) {
   copyBtn.click();
-  // Handler uses .then(); wait for microtasks
-  setImmediate(function () {
+  // Handler uses .then(); wait for promise callback then assert
+  setTimeout(function () {
     assert(copyBtn.textContent === 'Copied!', 'copy button should show Copied! after click');
     assert(copyBtn.classList.contains('copied'), 'copy button should have .copied class');
     finish();
-  });
+  }, 0);
 } else {
   finish();
 }

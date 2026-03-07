@@ -1,24 +1,17 @@
+/**
+ * Fiat payment method: Stripe (card) and other fiat options.
+ * Config: APP_CONFIG.fiat.stripe.link. Text: APP_TEXT.fiat.stripe.*
+ */
 (function () {
   'use strict';
 
-  window.DONATION_PAY_METHODS = window.DONATION_PAY_METHODS || [];
-
-  function get(obj, path) {
-    var keys = path.split('.');
-    for (var i = 0; i < keys.length; i++) {
-      if (obj == null) return undefined;
-      obj = obj[keys[i]];
-    }
-    return obj;
-  }
-
-  function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
+  var Donation = window.Donation;
+  if (!Donation) return;
 
   function render(container, config, text) {
+    var get = Donation.get;
+    var escapeHtml = Donation.escapeHtml;
+
     var section = document.createElement('section');
     section.className = 'card card-fiat';
     section.setAttribute('aria-labelledby', 'fiat-title');
@@ -33,12 +26,27 @@
       '<h2 id="fiat-title" data-text="fiat.title">' + escapeHtml(title) + '</h2>' +
       '</div>' +
       '<p data-text="fiat.description">' + escapeHtml(description) + '</p>' +
-      '<div class="fiat-actions" id="fiat-actions"></div>';
+      '<div class="fiat-options" id="fiat-options"></div>';
 
-    var actionsEl = section.querySelector('#fiat-actions');
+    var optionsEl = section.querySelector('#fiat-options');
     var fiatConfig = (config && config.fiat) ? config.fiat : {};
-    var stripeLink = fiatConfig.stripe && fiatConfig.stripe.link ? fiatConfig.stripe.link : '';
 
+    // Stripe option: always show block; button only when link is set
+    var stripeConfig = fiatConfig.stripe || {};
+    var stripeLink = stripeConfig.link || '';
+    var stripeTitle = get(text, 'fiat.stripe.title') || 'card (stripe)';
+    var stripeDesc = get(text, 'fiat.stripe.description') || 'donate securely with any major credit or debit card.';
+
+    var stripeBlock = document.createElement('div');
+    stripeBlock.className = 'fiat-option fiat-option-stripe';
+    stripeBlock.innerHTML =
+      '<div class="fiat-option-header">' +
+      '<span class="fiat-option-title" data-text="fiat.stripe.title">' + escapeHtml(stripeTitle) + '</span>' +
+      '</div>' +
+      '<p class="fiat-option-desc" data-text="fiat.stripe.description">' + escapeHtml(stripeDesc) + '</p>' +
+      '<div class="fiat-actions" id="fiat-stripe-actions"></div>';
+
+    var stripeActions = stripeBlock.querySelector('#fiat-stripe-actions');
     if (stripeLink) {
       var btnLabel = get(text, 'fiat.stripe.button') || 'donate with stripe';
       var btn = document.createElement('a');
@@ -48,11 +56,17 @@
       btn.className = 'btn btn-primary';
       btn.textContent = btnLabel;
       btn.setAttribute('data-text', 'fiat.stripe.button');
-      actionsEl.appendChild(btn);
+      stripeActions.appendChild(btn);
+    } else {
+      var placeholder = document.createElement('span');
+      placeholder.className = 'fiat-option-placeholder';
+      placeholder.textContent = 'Set config.fiat.stripe.link to enable.';
+      stripeActions.appendChild(placeholder);
     }
 
+    optionsEl.appendChild(stripeBlock);
     container.appendChild(section);
   }
 
-  window.DONATION_PAY_METHODS.push({ render: render });
+  Donation.registerMethod({ id: 'fiat', render: render });
 })();

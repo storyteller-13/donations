@@ -24,8 +24,8 @@ window.APP_TEXT = {
     title: 'donate with crypto',
     description: 'send to my address in your favorite crypto chain.',
     copy: 'copy',
-    copied: 'Copied!',
-    failed: 'Failed',
-    copyAria: 'Copy address',
+    copied: 'copied!',
+    failed: 'failed',
+    copyAria: 'copy address',
   },
 };

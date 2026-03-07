@@ -20,7 +20,7 @@ window.APP_CONFIG = {
       },
       bitcoin: {
         address: 'bc1q6nu6hzcx2tarrmkw38y3md9djflcac8fg62am0',
-        label: 'bitcoin (btc)',
+        label: 'bitcoin',
       },
       tron: {
         address: 'TJT5kh6bkioRhcZA99rhih7N1TYQrFatx5',
@@ -32,7 +32,7 @@ window.APP_CONFIG = {
       },
       ripple: {
         address: 'rLnfh5WAivTi4uo7ZZtBtvnwrKio34KMN8',
-        label: 'ripple (xrp)',
+        label: 'ripple',
       },
       near: {
         address: '830f8d7c407b66d4da421cc192e2578858225d067b45123c5471535b0fd330a4',

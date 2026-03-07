@@ -17,7 +17,9 @@ var requiredFiles = [
   'index.html',
   'config/config.js',
   'config/text.js',
+  'scripts/donation-api.js',
   'scripts/main.js',
+  'scripts/pay-methods/fiat.js',
   'scripts/pay-methods/crypto.js',
   'styles/main.css',
   'assets/favicon.svg',
@@ -31,7 +33,9 @@ requiredFiles.forEach(function (file) {
 var html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 assert(html.indexOf('config/config.js') !== -1, 'index.html should load config/config.js');
 assert(html.indexOf('config/text.js') !== -1, 'index.html should load config/text.js');
-assert(html.indexOf('scripts/pay-methods/crypto.js') !== -1, 'index.html should load scripts/pay-methods/crypto.js');
+assert(html.indexOf('scripts/donation-api.js') !== -1, 'index.html should load donation-api.js');
+assert(html.indexOf('scripts/pay-methods/fiat.js') !== -1, 'index.html should load fiat.js');
+assert(html.indexOf('scripts/pay-methods/crypto.js') !== -1, 'index.html should load crypto.js');
 assert(html.indexOf('scripts/main.js') !== -1, 'index.html should load scripts/main.js');
 assert(html.indexOf('styles/main.css') !== -1, 'index.html should load styles/main.css');
 assert(html.indexOf('id="pay-methods"') !== -1, 'index.html should have #pay-methods container');

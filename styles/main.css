@@ -200,8 +200,42 @@ body::before {
   transform: translateY(0);
 }
 
+.fiat-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fiat-option {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--neon-border);
+}
+
+.fiat-option:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.fiat-option-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--neon-bright);
+}
+
+.fiat-option-desc {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 .fiat-actions {
-  margin-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.fiat-option-placeholder {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 /* Crypto */

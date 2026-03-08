@@ -42,6 +42,22 @@ window.APP_CONFIG = {
         address: 't1em7Vhge9HKi9BYoBi1tADg2eMe5zj3Fvf',
         label: 'zcash',
       },
+      usdt: {
+        address: '0xe54E5a3ACaa91a2EbFa26cD21372BF9f7E1F1c22',
+        label: 'usdt',
+      },
+      usdc: {
+        address: '0xe54E5a3ACaa91a2EbFa26cD21372BF9f7E1F1c22',
+        label: 'usdc',
+      },
+      dai: {
+        address: '0xe54E5a3ACaa91a2EbFa26cD21372BF9f7E1F1c22',
+        label: 'dai',
+      },
+      usd1: {
+        address: '0xe54E5a3ACaa91a2EbFa26cD21372BF9f7E1F1c22',
+        label: 'usd1',
+      },
     },
   },
 };

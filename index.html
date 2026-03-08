@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
@@ -19,8 +17,13 @@
       <p class="tagline" data-text="header.tagline"></p>
     </header>
 
-    <main class="options" id="pay-methods" aria-label="Payment options">
-      <!-- Pay method sections (fiat, crypto, etc.) are injected by scripts -->
+    <main class="main">
+      <section class="card-section" aria-label="Preferred methods">
+        <div class="preferred-methods" id="preferred-methods"></div>
+      </section>
+      <section class="card-section" aria-label="Other options">
+        <div class="other-options" id="other-options"></div>
+      </section>
     </main>
 
     <footer class="footnote">
@@ -31,7 +34,7 @@
   <script src="config/config.js"></script>
   <script src="config/text.js"></script>
   <script src="scripts/donation-api.js"></script>
-  <script src="scripts/pay-methods/fiat.js"></script>
+  <script src="scripts/pay-methods/preferred.js"></script>
   <script src="scripts/pay-methods/crypto.js"></script>
   <script src="scripts/main.js"></script>
 </body>

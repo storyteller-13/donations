@@ -17,6 +17,8 @@
   'use strict';
 
   window.DONATION_PAY_METHODS = window.DONATION_PAY_METHODS || [];
+  window.DONATION_PAY_METHODS_PREFERRED = window.DONATION_PAY_METHODS_PREFERRED || [];
+  window.DONATION_PAY_METHODS_OTHER = window.DONATION_PAY_METHODS_OTHER || [];
 
   function get(obj, path) {
     var keys = path.split('.');
@@ -38,8 +40,13 @@
    * when rendering the page.
    */
   function registerMethod(spec) {
-    if (spec && typeof spec.render === 'function') {
-      window.DONATION_PAY_METHODS.push({ render: spec.render });
+    if (!spec || typeof spec.render !== 'function') return;
+    var entry = { render: spec.render };
+    window.DONATION_PAY_METHODS.push(entry);
+    if (spec.preferred) {
+      window.DONATION_PAY_METHODS_PREFERRED.push(entry);
+    } else if (spec.other !== false) {
+      window.DONATION_PAY_METHODS_OTHER.push(entry);
     }
   }
 

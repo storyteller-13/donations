@@ -42,12 +42,12 @@ assert(document.querySelector('.tagline').textContent.trim().length > 0, 'taglin
 
 var cards = document.querySelectorAll('.card');
 assert(cards.length >= 2, 'at least two pay method cards (fiat, crypto) should be rendered');
-var hasCrypto = false;
+var hasOtherOptions = false;
 cards.forEach(function (card) {
   var h2 = card.querySelector('h2');
-  if (h2 && h2.textContent.trim().toLowerCase().indexOf('crypto') !== -1) hasCrypto = true;
+  if (h2 && h2.textContent.trim().toLowerCase().indexOf('other options') !== -1) hasOtherOptions = true;
 });
-assert(hasCrypto, 'one card should be "donate with crypto"');
+assert(hasOtherOptions, 'one card should be "other options"');
 
 assert(document.querySelectorAll('.crypto-item').length > 0, 'crypto list should be populated from config');
 

@@ -18,7 +18,7 @@
 
     var iconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/><path d="M12 8v4l2 2"/></svg>';
     var title = get(text, 'crypto.title');
-    if (title === undefined) title = 'pay with crypto';
+    if (title === undefined) title = 'other options';
     var description = get(text, 'crypto.description');
     if (description === undefined) description = 'we accept every cryptocurrency below. send to the address for your chain.';
 
@@ -37,6 +37,7 @@
 
     for (var key in addresses) {
       if (!addresses[key] || !addresses[key].address) continue;
+      if (key.toLowerCase() === 'bitcoin') continue; /* bitcoin is in preferred */
       var item = addresses[key];
       var label = item.label || key;
       var id = 'address-' + key;
@@ -54,5 +55,5 @@
     container.appendChild(section);
   }
 
-  Donation.registerMethod({ render: render });
+  Donation.registerMethod({ render: render, other: true });
 })();

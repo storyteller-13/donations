@@ -72,7 +72,7 @@ body::before {
 }
 
 .header h1 {
-  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
   font-weight: 700;
   margin: 0 0 0.4rem;
   letter-spacing: 0.05em;
@@ -97,7 +97,68 @@ body::before {
   margin-top: 0.25rem;
 }
 
-/* Payment options — two boxes side by side: fiat | crypto */
+/* Main: preferred block on top, other options below */
+.main {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+}
+
+/* Preferred methods — single card with cash + bitcoin side by side */
+.card-section {
+  width: 100%;
+}
+
+.preferred-methods {
+  width: 100%;
+}
+
+.preferred-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+@media (max-width: 600px) {
+  .preferred-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.preferred-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.preferred-item-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--neon-bright);
+  letter-spacing: 0.03em;
+}
+
+.preferred-item-actions {
+  margin-top: 0.25rem;
+}
+
+/* Other options — crypto list card(s) below */
+.other-section {
+  width: 100%;
+}
+
+.other-options {
+  width: 100%;
+}
+
+.other-options .card {
+  max-width: 100%;
+}
+
+/* Legacy: payment options grid (kept for any non-refactored use) */
 .options {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -133,7 +194,7 @@ body::before {
   }
 
   .header h1 {
-    font-size: 1.4rem;
+    font-size: 1.55rem;
   }
 
   .card h2 {
@@ -193,7 +254,8 @@ body::before {
 
 /* Space between card title and payment content */
 .card .fiat-options,
-.card .crypto-list {
+.card .crypto-list,
+.card .preferred-grid {
   margin-top: 1.5rem;
 }
 
@@ -215,7 +277,8 @@ body::before {
 }
 
 .card-fiat .card-icon,
-.card-crypto .card-icon {
+.card-crypto .card-icon,
+.card-preferred .card-icon {
   color: var(--neon);
   border-color: rgba(192, 132, 255, 0.5);
   box-shadow: 0 0 15px var(--neon-glow);

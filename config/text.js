@@ -10,6 +10,16 @@ window.APP_TEXT = {
     tagline: "your donation helps me keep building open, free, and subversive code && art",
   },
 
+  preferred: {
+    title: 'preferred methods',
+    cash: 'cash',
+    bitcoin: 'bitcoin',
+  },
+
+  other: {
+    title: 'donate with crypto',
+  },
+
   fiat: {
     title: 'donate with fiat',
     description: '',

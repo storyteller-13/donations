@@ -37,6 +37,7 @@
 
     for (var key in addresses) {
       if (!addresses[key] || !addresses[key].address) continue;
+      if (key.toLowerCase() === 'bitcoin') continue; /* bitcoin is in preferred */
       var item = addresses[key];
       var label = item.label || key;
       var id = 'address-' + key;
@@ -54,5 +55,5 @@
     container.appendChild(section);
   }
 
-  Donation.registerMethod({ render: render });
+  Donation.registerMethod({ render: render, other: true });
 })();

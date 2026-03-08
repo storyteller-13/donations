@@ -3,7 +3,6 @@
 
   var text = typeof window.APP_TEXT !== 'undefined' ? window.APP_TEXT : {};
   var config = typeof window.APP_CONFIG !== 'undefined' ? window.APP_CONFIG : {};
-  var payMethods = window.DONATION_PAY_METHODS || [];
   var get = window.Donation && window.Donation.get;
 
   function applyTextConfig() {
@@ -15,12 +14,22 @@
     });
   }
 
-  var container = document.getElementById('pay-methods');
-  if (container) {
-    for (var i = 0; i < payMethods.length; i++) {
-      var method = payMethods[i];
-      if (method && typeof method.render === 'function') {
-        method.render(container, config, text);
+  var preferredContainer = document.getElementById('preferred-methods');
+  var otherContainer = document.getElementById('other-options');
+  var preferredMethods = window.DONATION_PAY_METHODS_PREFERRED || [];
+  var otherMethods = window.DONATION_PAY_METHODS_OTHER || [];
+
+  if (preferredContainer) {
+    for (var p = 0; p < preferredMethods.length; p++) {
+      if (preferredMethods[p] && typeof preferredMethods[p].render === 'function') {
+        preferredMethods[p].render(preferredContainer, config, text);
+      }
+    }
+  }
+  if (otherContainer) {
+    for (var o = 0; o < otherMethods.length; o++) {
+      if (otherMethods[o] && typeof otherMethods[o].render === 'function') {
+        otherMethods[o].render(otherContainer, config, text);
       }
     }
   }

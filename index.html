@@ -9,10 +9,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
+  <script>
+    (function () {
+      var hash = (location.hash || '').slice(1).toLowerCase();
+      var q = (new URLSearchParams(location.search)).get('theme');
+      if (hash === 'murica' || q === 'murica') {
+        document.documentElement.setAttribute('data-theme', 'murica');
+      } else {
+        var t = localStorage.getItem('donation-theme');
+        if (t === 'murica') document.documentElement.setAttribute('data-theme', 'murica');
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="page">
     <header class="header">
+      <nav class="theme-switcher" aria-label="Theme">
+        <button type="button" class="theme-btn" data-theme="cypher" aria-pressed="true">cypher</button>
+        <button type="button" class="theme-btn" data-theme="murica" aria-pressed="false">murica</button>
+      </nav>
       <h1 data-text="header.title"></h1>
       <p class="tagline" data-text="header.tagline"></p>
     </header>

@@ -66,6 +66,41 @@ body::before {
   gap: clamp(0.5rem, 1.5vw, 0.85rem);
 }
 
+/* Theme switcher — top of header */
+.theme-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.theme-btn {
+  font-family: var(--font);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--neon-border);
+  background: rgba(192, 132, 255, 0.08);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.theme-btn:hover {
+  color: var(--text);
+  border-color: var(--neon);
+  background: rgba(192, 132, 255, 0.15);
+}
+
+.theme-btn[aria-pressed="true"] {
+  color: var(--neon-bright);
+  border-color: var(--neon);
+  background: rgba(192, 132, 255, 0.2);
+  box-shadow: 0 0 15px var(--neon-glow);
+}
+
 /* Header — title at top */
 .header {
   text-align: center;
@@ -456,5 +491,171 @@ body::before {
 
 .footnote a:hover {
   color: var(--neon);
+}
+
+/* ========== Murica — America flag neon (red, white, blue) ========== */
+html[data-theme="murica"] {
+  --bg: #0c1222;
+  --surface: #0f1729;
+  --surface-hover: #142038;
+  --text: #f8fafc;
+  --text-muted: #cbd5e1;
+  --neon: #ef4444;
+  --neon-bright: #f87171;
+  --neon-glow: rgba(239, 68, 68, 0.5);
+  --neon-glow-strong: rgba(239, 68, 68, 0.7);
+  --neon-border: rgba(59, 130, 246, 0.5);
+  --crypto: #22c55e;
+}
+
+html[data-theme="murica"] body::before {
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 15% 30%,
+      rgba(239, 68, 68, 0.28) 0%,
+      rgba(239, 68, 68, 0.08) 40%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 65% 45% at 85% 70%,
+      rgba(239, 68, 68, 0.18) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 80% 20%,
+      rgba(59, 130, 246, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 85% 45% at 50% -5%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 55%
+    );
+}
+
+/* Murica: more red — title with strong red glow */
+html[data-theme="murica"] .header h1 {
+  color: #ffffff;
+  text-shadow:
+    0 0 15px rgba(255, 255, 255, 0.4),
+    0 0 35px rgba(239, 68, 68, 0.7),
+    0 0 55px rgba(239, 68, 68, 0.4),
+    0 0 45px rgba(59, 130, 246, 0.35);
+}
+
+html[data-theme="murica"] .tagline {
+  color: #fca5a5;
+  text-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+}
+
+html[data-theme="murica"] .card {
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  box-shadow:
+    0 0 25px rgba(239, 68, 68, 0.2),
+    0 0 20px rgba(59, 130, 246, 0.1),
+    0 0 40px rgba(255, 255, 255, 0.03),
+    inset 0 0 35px rgba(239, 68, 68, 0.06);
+}
+
+html[data-theme="murica"] .card:hover {
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow:
+    0 0 40px rgba(239, 68, 68, 0.4),
+    0 0 35px rgba(59, 130, 246, 0.2),
+    0 0 55px rgba(255, 255, 255, 0.06),
+    inset 0 0 45px rgba(239, 68, 68, 0.1);
+}
+
+html[data-theme="murica"] .card h2,
+html[data-theme="murica"] .preferred-item-label {
+  color: #fca5a5;
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.3),
+    0 0 25px rgba(239, 68, 68, 0.65),
+    0 0 35px rgba(239, 68, 68, 0.35);
+}
+
+html[data-theme="murica"] .card-icon,
+html[data-theme="murica"] .card-fiat .card-icon,
+html[data-theme="murica"] .card-crypto .card-icon,
+html[data-theme="murica"] .card-preferred .card-icon {
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.55);
+  box-shadow:
+    0 0 18px rgba(239, 68, 68, 0.5),
+    0 0 25px rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="murica"] .card p {
+  color: var(--text-muted);
+}
+
+html[data-theme="murica"] .fiat-option {
+  border-top-color: rgba(239, 68, 68, 0.25);
+}
+
+html[data-theme="murica"] .btn {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.08);
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.3);
+}
+
+html[data-theme="murica"] .btn:hover {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.18);
+  box-shadow:
+    0 0 30px rgba(239, 68, 68, 0.55),
+    0 0 45px rgba(239, 68, 68, 0.25),
+    0 0 35px rgba(59, 130, 246, 0.15);
+}
+
+html[data-theme="murica"] .theme-btn[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.25);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="murica"] .theme-btn:hover {
+  border-color: rgba(239, 68, 68, 0.6);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+html[data-theme="murica"] .theme-btn[aria-pressed="false"] {
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+html[data-theme="murica"] .copy-btn {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.45);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+html[data-theme="murica"] .copy-btn:hover {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.2);
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.45);
+}
+
+html[data-theme="murica"] .footnote a {
+  color: #cbd5e1;
+}
+
+html[data-theme="murica"] .footnote a:hover {
+  color: #f87171;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+html[data-theme="murica"] .crypto-address {
+  color: var(--text);
+  border-color: rgba(239, 68, 68, 0.25);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.06);
+}
+
+html[data-theme="murica"] .fiat-option-title {
+  color: #fca5a5;
+  text-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
 }
 

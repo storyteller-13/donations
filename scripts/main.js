@@ -1,15 +1,98 @@
 (function () {
   'use strict';
 
+  var THEME_KEY = 'donation-theme';
+  var themes = ['cypher', 'conservationism'];
+
+  function themeFromUrl() {
+    var hash = (location.hash || '').slice(1).toLowerCase();
+    var q = (new URLSearchParams(location.search)).get('theme');
+    if (hash === 'conservationism' || q === 'conservationism') return 'conservationism';
+    return null;
+  }
+
+  function getStoredTheme() {
+    try {
+      var t = localStorage.getItem(THEME_KEY);
+      return themes.indexOf(t) >= 0 ? t : 'cypher';
+    } catch (e) { // eslint-disable-line no-unused-vars
+      return 'cypher';
+    }
+  }
+
+  function getInitialTheme() {
+    var themeBtns = document.querySelectorAll('.theme-btn');
+    if (themeBtns.length === 0) {
+      return document.documentElement.getAttribute('data-theme') || 'cypher';
+    }
+    return themeFromUrl() || getStoredTheme();
+  }
+
+  function setTheme(theme) {
+    if (theme === 'cypher') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (e) {} // eslint-disable-line no-unused-vars
+    var themeBtns = document.querySelectorAll('.theme-btn');
+    if (themeBtns.length > 0) {
+      if (theme === 'conservationism') {
+        if (location.hash !== '#conservationism') history.replaceState(null, '', location.pathname + location.search + '#conservationism');
+      } else {
+        if (location.hash === '#conservationism') history.replaceState(null, '', location.pathname + location.search);
+      }
+      themeBtns.forEach(function (btn) {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-theme') === theme ? 'true' : 'false');
+      });
+    }
+    if (typeof applyTextConfig === 'function') applyTextConfig();
+  }
+
+  var initial = getInitialTheme();
+  if (initial === 'cypher') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', initial);
+  }
+  var themeBtns = document.querySelectorAll('.theme-btn');
+  themeBtns.forEach(function (btn) {
+    btn.setAttribute('aria-pressed', btn.getAttribute('data-theme') === initial ? 'true' : 'false');
+    btn.addEventListener('click', function () {
+      var theme = this.getAttribute('data-theme');
+      if (themes.indexOf(theme) >= 0) setTheme(theme);
+    });
+  });
+  if (themeBtns.length > 0) {
+    window.addEventListener('hashchange', function () {
+      var fromUrl = themeFromUrl();
+      if (fromUrl) setTheme(fromUrl);
+    });
+  }
+
   var text = typeof window.APP_TEXT !== 'undefined' ? window.APP_TEXT : {};
   var config = typeof window.APP_CONFIG !== 'undefined' ? window.APP_CONFIG : {};
   var get = window.Donation && window.Donation.get;
 
+  function getCurrentTheme() {
+    return document.documentElement.getAttribute('data-theme') || 'cypher';
+  }
+
   function applyTextConfig() {
-    document.title = (get && get(text, 'pageTitle')) || document.title;
+    var theme = getCurrentTheme();
+    var titleKey = theme === 'conservationism' ? 'conservationism.pageTitle' : 'pageTitle';
+    document.title = (get && get(text, titleKey)) || document.title;
 
     document.querySelectorAll('[data-text]').forEach(function (el) {
-      var value = get && get(text, el.getAttribute('data-text'));
+      var key = el.getAttribute('data-text');
+      var value;
+      if (theme === 'conservationism' && (key === 'header.title' || key === 'header.tagline')) {
+        value = get && get(text, 'conservationism.header.' + key.split('.')[1]);
+      } else {
+        value = get && get(text, key);
+      }
       if (value != null) el.textContent = value;
     });
   }

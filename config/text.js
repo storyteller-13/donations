@@ -38,4 +38,12 @@ window.APP_TEXT = {
     failed: 'failed',
     copyAria: 'copy address',
   },
+
+  conservationism: {
+    pageTitle: 'support our work 🇺🇸',
+    header: {
+      title: 'support our work 🇺🇸',
+      tagline: '',
+    },
+  },
 };

@@ -16,6 +16,8 @@ var document = window.document;
 global.window = window;
 global.document = document;
 global.navigator = window.navigator;
+global.location = window.location;
+global.history = window.history;
 global.setTimeout = function () {}; /* noop so copy button stays "Copied!" for assert */
 global.console = window.console;
 

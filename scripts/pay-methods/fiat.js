@@ -50,7 +50,7 @@
 
     var stripeActions = stripeBlock.querySelector('#fiat-stripe-actions');
     if (stripeLink) {
-      var btnLabel = get(text, 'fiat.stripe.button') || 'donate with stripe';
+      var btnLabel = get(text, 'fiat.stripe.button') || 'donate with card';
       var btn = document.createElement('a');
       btn.href = stripeLink;
       btn.target = '_blank';

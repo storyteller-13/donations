@@ -26,7 +26,7 @@ window.APP_TEXT = {
     stripe: {
       title: 'card (stripe)',
       description: '',
-      button: 'donate with stripe',
+      button: 'donate with card',
     },
   },
 

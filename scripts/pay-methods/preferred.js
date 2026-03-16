@@ -27,7 +27,7 @@
     if (bitcoinLabel === undefined) bitcoinLabel = 'bitcoin';
 
     var stripeLink = (config && config.fiat && config.fiat.stripe && config.fiat.stripe.link) ? config.fiat.stripe.link : '';
-    var stripeBtnLabel = get(text, 'fiat.stripe.button') || 'donate with stripe';
+    var stripeBtnLabel = get(text, 'fiat.stripe.button') || 'donate with cash';
 
     var bitcoinAddr = (config && config.crypto && config.crypto.addresses && config.crypto.addresses.bitcoin)
       ? config.crypto.addresses.bitcoin

@@ -20,7 +20,7 @@
     var title = get(text, 'fiat.title');
     if (title === undefined) title = 'donate with fiat';
     var description = get(text, 'fiat.description');
-    if (description === undefined) description = 'donate with card or other fiat options.';
+    if (description === undefined) description = 'donate with cash or other fiat options.';
 
     section.innerHTML =
       '<div class="card-header">' +
@@ -50,7 +50,7 @@
 
     var stripeActions = stripeBlock.querySelector('#fiat-stripe-actions');
     if (stripeLink) {
-      var btnLabel = get(text, 'fiat.stripe.button') || 'donate with card';
+      var btnLabel = get(text, 'fiat.stripe.button') || 'donate with cash';
       var btn = document.createElement('a');
       btn.href = stripeLink;
       btn.target = '_blank';

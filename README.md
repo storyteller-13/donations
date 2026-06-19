@@ -1,4 +1,4 @@
-# donations.vonsteinkirch.com
+# donate.nullstar.fun
 
 a static, single-page donation site with **stripe** (card/fiat) and **cryptocurrency** (bitcoin, ethereum, cardano, etc.). no backend required.
 
